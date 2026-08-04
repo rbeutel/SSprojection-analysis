@@ -27,8 +27,8 @@ def booleans(mydata,region,depth):
 
     if depth==50:
         depth_bool = (mydata.deptht>40) & (mydata.deptht<60)
-    elif depth==0:
-        depth_bool = (mydata.deptht<2)
+    elif depth==300:
+        depth_bool = (mydata.deptht>290) & (mydata.deptht<310)
 
 
     # region can be jdf, pug (puget sound), nsg (northern SoG), and csg (central SoG)
@@ -66,19 +66,6 @@ days = np.array(pd.to_datetime(data.time_counter.values))
 filler = np.empty(len(days))
 d = {'date':days,'temp':filler,'salt':filler,'DO':filler,'DIC':filler,'TA':filler,'NO3':filler}
 
-# jdf surface
-depth_bool, y_bool, x_bool = booleans(data,'jdf',depth=0)
-df = pd.DataFrame(d)
-df['temp'] = np.mean(data.votemper[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
-df['salt'] = np.mean(data.vosaline[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
-df['DO'] = np.mean(data.dissolved_oxygen[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
-df['DIC'] = np.mean(data.dissolved_inorganic_carbon[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
-df['TA'] = np.mean(data.total_alkalinity[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
-df['NO3'] = np.mean(data.nitrate[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
-
-df.to_csv(f"./output/jdf_0m_{scenario}{year}_spin")
-print(f"./output/jdf_0m_{scenario}{year}_spin")
-
 
 # jdf 50 m
 depth_bool, y_bool, x_bool = booleans(data,'jdf',depth=50)
@@ -92,20 +79,6 @@ df['NO3'] = np.mean(data.nitrate[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
 
 df.to_csv(f"./output/jdf_50m_{scenario}{year}_spin")
 print(f"./output/jdf_50m_{scenario}{year}_spin")
-
-
-# pug surface
-depth_bool, y_bool, x_bool = booleans(data,'pug',depth=0)
-df = pd.DataFrame(d)
-df['temp'] = np.mean(data.votemper[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
-df['salt'] = np.mean(data.vosaline[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
-df['DO'] = np.mean(data.dissolved_oxygen[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
-df['DIC'] = np.mean(data.dissolved_inorganic_carbon[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
-df['TA'] = np.mean(data.total_alkalinity[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
-df['NO3'] = np.mean(data.nitrate[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
-
-df.to_csv(f"./output/pug_0m_{scenario}{year}_spin")
-print(f"./output/pug_0m_{scenario}{year}_spin")
 
 
 # pug 50 m
@@ -122,20 +95,6 @@ df.to_csv(f"./output/pug_50m_{scenario}{year}_spin")
 print(f"./output/pug_50m_{scenario}{year}_spin")
 
 
-# nsg surface
-depth_bool, y_bool, x_bool = booleans(data,'nsg',depth=0)
-df = pd.DataFrame(d)
-df['temp'] = np.mean(data.votemper[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
-df['salt'] = np.mean(data.vosaline[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
-df['DO'] = np.mean(data.dissolved_oxygen[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
-df['DIC'] = np.mean(data.dissolved_inorganic_carbon[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
-df['TA'] = np.mean(data.total_alkalinity[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
-df['NO3'] = np.mean(data.nitrate[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
-
-df.to_csv(f"./output/nsg_0m_{scenario}{year}_spin")
-print(f"./output/nsg_0m_{scenario}{year}_spin")
-
-
 # nsg 50 m
 depth_bool, y_bool, x_bool = booleans(data,'nsg',depth=50)
 df = pd.DataFrame(d)
@@ -150,20 +109,6 @@ df.to_csv(f"./output/nsg_50m_{scenario}{year}_spin")
 print(f"./output/nsg_50m_{scenario}{year}_spin")
 
 
-# csg surface
-depth_bool, y_bool, x_bool = booleans(data,'csg',depth=0)
-df = pd.DataFrame(d)
-df['temp'] = np.mean(data.votemper[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
-df['salt'] = np.mean(data.vosaline[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
-df['DO'] = np.mean(data.dissolved_oxygen[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
-df['DIC'] = np.mean(data.dissolved_inorganic_carbon[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
-df['TA'] = np.mean(data.total_alkalinity[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
-df['NO3'] = np.mean(data.nitrate[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
-
-df.to_csv(f"./output/csg_0m_{scenario}{year}_spin")
-print(f"./output/csg_0m_{scenario}{year}_spin")
-
-
 # csg 50 m
 depth_bool, y_bool, x_bool = booleans(data,'csg',depth=50)
 df = pd.DataFrame(d)
@@ -176,3 +121,16 @@ df['NO3'] = np.mean(data.nitrate[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
 
 df.to_csv(f"./output/csg_50m_{scenario}{year}_spin")
 print(f"./output/csg_50m_{scenario}{year}_spin")
+
+# csg deep
+depth_bool, y_bool, x_bool = booleans(data,'csg',depth=300)
+df = pd.DataFrame(d)
+df['temp'] = np.mean(data.votemper[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
+df['salt'] = np.mean(data.vosaline[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
+df['DO'] = np.mean(data.dissolved_oxygen[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
+df['DIC'] = np.mean(data.dissolved_inorganic_carbon[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
+df['TA'] = np.mean(data.total_alkalinity[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
+df['NO3'] = np.mean(data.nitrate[:,depth_bool,y_bool,x_bool],axis=(1,2,3))
+
+df.to_csv(f"./output/csg_deep_{scenario}{year}_spin")
+print(f"./output/csg_deep_{scenario}{year}_spin")

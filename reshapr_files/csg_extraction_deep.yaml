@@ -1,0 +1,35 @@
+dataset:
+  model profile: /home/rbeutel/MEOPAR/analysis/reshapr_files/model_profile.yaml
+  time base: day
+  variables group: primary
+
+dask cluster: nibi_cluster.yaml
+
+start date: 2018-01-01
+end date: 2018-12-31
+
+extract variables:
+  - votemper
+  - vosaline
+  - dissolved_oxygen
+  - dissolved_inorganic_carbon
+  - total_alkalinity
+  - nitrate
+
+selection:
+  depth:
+    # NOTE: use depth level numbers, not depths in meters
+    depth min: 35
+    depth max: 36
+  grid y:
+    y min: 460
+    y max: 510
+  grid x:
+    x min: 240
+    x max: 290
+
+extracted dataset:
+  name: Up_2018spin_primarytracers_cgsdeep
+  description: Primary tracers from Up change scenario, 2018 spinup run, CSG region, ~50 m depth;
+              y=460:510, x=240:290, deptht=23:24
+  dest dir: /home/rbeutel/MEOPAR/analysis/output/

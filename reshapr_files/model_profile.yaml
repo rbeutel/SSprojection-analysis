@@ -1,0 +1,36 @@
+description: Becca's SalishSeaCast v202111 property projection results stored on fir.
+
+time coord:
+  name: time_counter
+y coord:
+  name: y
+x coord:
+  name: x
+
+# Chunking scheme used for the netCDF4 files
+# Note that coordinate names (keys) are conceptual here.
+# They are replaced with actual coordinate names in files in the code;
+# e.g. time is replaced by time_counter for dataset loading
+chunk size:
+  time: 1
+  depth: 40
+  y: 898
+  x: 398
+
+geo ref dataset:
+  path: https://salishsea.eos.ubc.ca/erddap/griddap/ubcSSnBathymetryV21-08
+  y coord: gridY
+  x coord: gridX
+
+extraction time origin: 2018-01-01
+
+results archive:
+  path: /scratch/rbeutel/MEOPAR/results/UpChange_2018_spin/
+  datasets:
+    day:
+      primary:
+        file pattern: "SalishSea_1d_20180101_20181231_pri_T_{yyyymmdd}-{yyyymmdd}.nc"
+        depth coord: deptht
+      secondary:
+        file pattern: "SalishSea_1d_20180101_20181231_sec_T_{yyyymmdd}-{yyyymmdd}.nc"
+        depth coord: deptht
