@@ -25,12 +25,12 @@ geo ref dataset:
 extraction time origin: 2018-01-01
 
 results archive:
-  path: /scratch/rbeutel/MEOPAR/results/UpChange_2018_spin/
+  path: /scratch/rbeutel/MEOPAR/results/AllChange_2021_spin/
   datasets:
     day:
       primary:
-        file pattern: "SalishSea_1d_20180101_20181231_pri_T_{yyyymmdd}-{yyyymmdd}.nc"
+        file pattern: "SalishSea_1d_20210101_20211231_pri_T_{yyyymmdd}-{yyyymmdd}.nc"
         depth coord: deptht
       secondary:
-        file pattern: "SalishSea_1d_20180101_20181231_sec_T_{yyyymmdd}-{yyyymmdd}.nc"
+        file pattern: "SalishSea_1d_20210101_20211231_sec_T_{yyyymmdd}-{yyyymmdd}.nc"
         depth coord: deptht
