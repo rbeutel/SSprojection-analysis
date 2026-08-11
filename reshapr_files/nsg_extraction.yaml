@@ -5,8 +5,8 @@ dataset:
 
 dask cluster: nibi_cluster.yaml
 
-start date: 2021-01-01
-end date: 2021-12-31
+start date: 2020-01-01
+end date: 2020-12-31
 
 extract variables:
   - votemper
@@ -29,7 +29,7 @@ selection:
     x max: 180
 
 extracted dataset:
-  name: All_2021spin_primarytracers_nsg50
-  description: Primary tracers from All change scenario, N SoG region, ~50 m depth;
+  name: Up_2020spin_primarytracers_nsg50
+  description: Primary tracers from Up change scenario, N SoG region, ~50 m depth;
               y=650:700, x=130:180, deptht=23:24
   dest dir: /home/rbeutel/MEOPAR/analysis/output/
